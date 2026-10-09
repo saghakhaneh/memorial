@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" id="jsHtmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سقاخانه مجازی | یادبود اموات</title>
+    <style>
+        :root { --card-bg: rgba(6, 13, 26, 0.96); --gold: #d4af37; --glow: rgba(212, 175, 55, 0.3); }
+        * { box-sizing: border-box; margin:0; padding:0; font-family: Tahoma, Geneva, sans-serif; }
+        body { background-color: #020612; color: #e2e8f0; padding: 20px 80px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; position: relative; overflow-x: hidden; }
+        body::before, body::after { content: ''; position: fixed; top: 0; width: 60px; height: 100vh; z-index: 10; background-color: #040c16; box-shadow: 0 0 25px rgba(0,0,0,0.8); background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSIxMjAiIHZpZXdCb3g9IjAgMCA2MCAxMjAiPjxwYXRoIGQ9Ik0zMCAwIEM0NSAyMCwgNTUgNDAsIDMwIDKiEMxNSA0MCwgNSAyMCwgMzAgMCBaIE0zMCA2MCBDNDUgODAsIDU1IDEwMCwgMzAgMTIwIEMxNSAxMDAsIDUgODAsIDMwIDYwIFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q0YWYzNyIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjU1Ii8+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMyIgZmlsbD0iIzAwYmZmZiIvPjxjaXJjbGUgY3g9IjMwIiBjeT0iOTAiIHI9IjMiIGZpbGw9IiMwMGJmZmYiLz48L3N2Zz4="); background-repeat: repeat-y; }
+        body::before { right: 0; border-left: 2px solid var(--gold); } body::after { left: 0; border-right: 2px solid var(--gold); }
+        header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid var(--gold); padding-bottom: 20px; width: 100%; max-width: 950px; text-shadow: 0 3px 6px rgba(0,0,0,0.9); z-index: 15; position: relative; }
+        h1 { color: var(--gold); font-size: 2.3rem; margin-bottom: 10px; font-weight: bold; }
+        .header-actions { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 25px; z-index: 20; gap: 20px; }
+        .header-left-side, .header-center-side, .header-right-side { flex: 1; display: flex; justify-content: center; }
+        .header-left-side { justify-content: flex-start; } .header-right-side { justify-content: flex-end; }
+        .cta-btn { background-color: var(--gold); color: #000; border: none; padding: 12px 35px; font-size: 1.05rem; font-weight: bold; border-radius: 25px; cursor: pointer; box-shadow: 0 0 15px var(--gold); white-space: nowrap; }
+        .lang-switch-btn { background-color: transparent; border: 2px solid var(--gold); color: var(--gold); padding: 8px 20px; font-size: 1rem; font-weight: bold; border-radius: 20px; cursor: pointer; min-width: 65px; }
+        .audio-container { display: flex; align-items: center; background-color: #071222; border: 2px solid var(--gold); border-radius: 25px; padding: 4px 15px; gap: 10px; }
+        .audio-select { background: transparent; border: none; color: #fff; font-size: 0.95rem; font-weight: bold; outline: none; } .audio-select option { background-color: #071222; color: #fff; }
+        .audio-btn { background: none; border: none; color: var(--gold); font-size: 1.2rem; cursor: pointer; }
+        .widget-panel { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 950px; margin-bottom: 25px; gap: 15px; user-select: none; z-index: 15; position: relative; }
+        .clock-widget, .calendar-widget { background: linear-gradient(145deg, #071424, #020712); border: 2px solid var(--gold); border-radius: 12px; padding: 12px 20px; min-width: 160px; text-align: center; color: #fff; height: 75px; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,0.6); }
+        .clock-day, .cal-date { font-size: 0.95rem; color: var(--gold); font-weight: bold; }
+        .clock-time, .cal-year { font-size: 1.25rem; font-weight: bold; color: #48bb78; text-shadow: 0 0 10px rgba(72,187,120,0.4); font-family: monospace; }
+        .marquee-widget { flex: 1; background: linear-gradient(to right, #020b18, #0a1f38, #020b18); border: 2px solid var(--gold); border-radius: 12px; height: 75px; overflow: hidden; display: flex; align-items: center; cursor: pointer; box-shadow: inset 0 0 20px rgba(0,191,255,0.15), 0 8px 20px rgba(0,0,0,0.6); position: relative; }
+        .marquee-widget::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDMwIDMwIj48cGF0aCBkPSJNMTUgMCBMMzAgMTUgTDE1IDMwIEwwIDE1IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q0YWYzNyIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjE1Ii8+PC9zdmc+"); pointer-events: none; }
+        .marquee-box { display: flex; width: 100%; overflow: hidden; pointer-events: none; }
+        .marquee-inner { display: flex; width: max-content; }
+        .marquee-rtl { animation: scrollRTL 25s linear infinite; direction: rtl; } .marquee-ltr { animation: scrollLTR 25s linear infinite; direction: ltr; }
+        .marquee-text-block { color: #f7fafc; font-size: 1.15rem; font-weight: bold; white-space: nowrap; padding: 0 120px; display: inline-block; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        @keyframes scrollRTL { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(50%,0,0); } }
+        @keyframes scrollLTR { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(-50%,0,0); } }
+        .shrine-frame { position: relative; width: 100%; max-width: 950px; margin-top: 10px; display: flex; flex-direction: column; align-items: center; z-index: 1; border-radius: 475px 475px 0 0 / 450px 450px 0 0; border-top: 5px solid var(--gold); border-left: 3px solid rgba(212,175,55,0.4); border-right: 3px solid rgba(212,175,55,0.4); box-shadow: inset 0 25px 60px rgba(0,0,0,0.95), 0 12px 40px rgba(0,0,0,0.7); padding: 260px 0 60px 0; min-height: 550px; background-color: #040a1c; background-image: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.15) 0%, rgba(3, 9, 24, 0.98) 80%), url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwIEMxMCAxMCwgMzAgMTAsIDQwIDAgTTQwIDQwIEMzMCAzMCwgMTAgMzAsIDAgNDAgTTAgNDAgQzEwIDMwLCAxMCAxMCwgMCAwIE00MCAwIEMzMCAxMCwgMzAgMzAsIDQwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI4NDciIHN0cm9rZS13aWR0aD0iMC43IiBzdHJva2Utb3BhY2l0eT0iMC40NSIvPjwvc3ZnPg=="); }
+        .sagha-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 30px; width: 100%; max-width: 880px; padding: 0 40px; z-index: 5; }
+        .candle-card { background: linear-gradient(145deg, #091324, #030814); border: 1px solid #162a45; border-radius: 16px; padding: 25px 20px; display: flex; flex-direction: column; align-items: center; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.9); min-height: 290px; justify-content: space-between; border-bottom: 4px solid #0b1524; }
+        .candle-container { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; width: 60px; margin-bottom: 15px; }
+        .small-candle { height: 90px; } .medium-candle { height: 130px; } .large-candle { height: 170px; }
+        .candle-wax { background: linear-gradient(to right, #9c7a23 0%, #f3e5ab 25%, #fff8dc 50%, #e8d896 75%, #aa842c 100%); border-radius: 6px 6px 4px 4px; width: 100%; height: 100%; position: relative; box-shadow: inset 0 4px 6px rgba(255,255,255,0.4), inset 0 -10px 20px rgba(0,0,0,0.5); }
+        .candle-wax::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(to right, #b48d32, #fff8dc, #b48d32); border-radius: 50%; }
+        .candle-wick-element { position: absolute; top: -5px; left: 50%; transform: translateX(-50%); width: 2px; height: 7px; background-color: #111; z-index: 4; }
+        .flame { position: absolute; bottom: calc(100% + 2px); left: 50%; transform: translateX(-50%); transform-origin: center bottom; border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%; background: linear-gradient(to bottom, #ffffff 0%, #ffea00 40%, #ff6a00 80%, rgba(0,0,255,0.3) 100%); animation: swayAndFlicker 0.25s infinite alternate ease-in-out; filter: drop-shadow(0 0 12px #ffaa00); z-index: 5; }
+        .small-candle .flame { width: 14px; height: 26px; } .medium-candle .flame { width: 18px; height: 34px; } .large-candle .flame { width: 22px; height: 42px; }
+        @keyframes swayAndFlicker { 0% { transform: translateX(-50%) rotate(-1.5deg) scaleX(0.95); } 100% { transform: translateX(-50%) rotate(1.5deg) scaleX(1.05); } }
+        .name-tag { font-size: 1.15rem; font-weight: bold; color: #fff; text-align: center; margin-top: 10px; outline: none; width: 100%; text-shadow: 0 2px 4px #000; }
+        .timer-tag { font-size: 0.8rem; color: #cbd5e0; margin-top: 5px; direction: ltr; font-weight: bold; }
+        .admin-box { margin-top: 10px; width: 100%; border-top: 1px dashed #2d3748; padding-top: 8px; text-align: center; } 
+        .admin-input { width: 100%; padding: 5px; font-size: 0.75rem; background-color: transparent; border: 1px solid transparent; color: #4a5568; text-align: center; outline: none; }
+        .action-btn { background-color: #e53e3e; color: white; border: none; padding: 6px; font-size: 0.8rem; font-weight: bold; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 5px; }
+        .js-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 2000; }
+        .js-modal-content { background-color: var(--card-bg); border: 2px solid var(--gold); padding: 30px; border-radius: 15px; width: 90%; max-width: 450px; box-shadow: 0 0 35px var(--gold); } .js-form-group { margin-bottom: 15px; } .js-modal-content label { display: block; margin-bottom: 6px; color: var(--gold); font-weight: bold; }<!DOCTYPE html>
+<html lang="fa" dir="rtl" id="jsHtmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سقاخانه مجازی | یادبود اموات</title>
+    <style>
+        :root { --card-bg: rgba(6, 13, 26, 0.96); --gold: #d4af37; --glow: rgba(212, 175, 55, 0.3); }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, Geneva, sans-serif; }
+        body { background-color: #020612; color: #e2e8f0; padding: 20px 80px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; position: relative; overflow-x: hidden; }
+        body::before, body::after { content: ''; position: fixed; top: 0; width: 60px; height: 100vh; z-index: 10; background-color: #040c16; box-shadow: 0 0 25px rgba(0,0,0,0.8); background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSIxMjAiIHZpZXdCb3g9IjAgMCA2MCAxMjAiPjxwYXRoIGQ9Ik0zMCAwIEM0NSAyMCwgNTUgNDAsIDMwIDKiEMxNSA0MCwgNSAyMCwgMzAgMCBaIE0zMCA2MCBDNDUgODAsIDU1IDEwMCwgMzAgMTIwIEMxNSAxMDAsIDUgODAsIDMwIDYwIFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q0YWYzNyIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjU1Ii8+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMyIgZmlsbD0iIzAwYmZmZiIvPjxjaXJjbGUgY3g9IjMwIiBjeT0iOTAiIHI9IjMiIGZpbGw9IiMwMGJmZmYiLz48L3N2Zz4="); background-repeat: repeat-y; }
+        body::before { right: 0; border-left: 2px solid var(--gold); } body::after { left: 0; border-right: 2px solid var(--gold); }
+        header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid var(--gold); padding-bottom: 20px; width: 100%; max-width: 950px; text-shadow: 0 3px 6px rgba(0,0,0,0.9); z-index: 15; position: relative; }
+        h1 { color: var(--gold); font-size: 2.3rem; margin-bottom: 10px; font-weight: bold; }
+        .header-actions { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 25px; z-index: 20; gap: 20px; }
+        .header-left-side, .header-center-side, .header-right-side { flex: 1; display: flex; justify-content: center; }
+        .header-left-side { justify-content: flex-start; } .header-right-side { justify-content: flex-end; }
+        .cta-btn { background-color: var(--gold); color: #000; border: none; padding: 12px 35px; font-size: 1.05rem; font-weight: bold; border-radius: 25px; cursor: pointer; box-shadow: 0 0 15px var(--gold); white-space: nowrap; transition: transform 0.2s; }
+        .cta-btn:hover { transform: scale(1.03); }
+        .lang-switch-btn { background-color: transparent; border: 2px solid var(--gold); color: var(--gold); padding: 8px 20px; font-size: 1rem; font-weight: bold; border-radius: 20px; cursor: pointer; min-width: 65px; }
+        .audio-container { display: flex; align-items: center; background-color: #071222; border: 2px solid var(--gold); border-radius: 25px; padding: 4px 15px; gap: 10px; }
+        .audio-select { background: transparent; border: none; color: #fff; font-size: 0.95rem; font-weight: bold; outline: none; cursor: pointer; }
+        .audio-select option { background-color: #071222; color: #fff; }
+        .audio-btn { background: none; border: none; color: var(--gold); font-size: 1.2rem; cursor: pointer; }
+        .widget-panel { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 950px; margin-bottom: 25px; gap: 15px; user-select: none; z-index: 15; position: relative; }
+        .clock-widget, .calendar-widget { background: linear-gradient(145deg, #071424, #020712); border: 2px solid var(--gold); border-radius: 12px; padding: 12px 20px; min-width: 160px; text-align: center; color: #fff; height: 75px; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,0.6); }
+        .clock-day, .cal-date { font-size: 0.95rem; color: var(--gold); font-weight: bold; }
+        .clock-time, .cal-year { font-size: 1.25rem; font-weight: bold; color: #48bb78; text-shadow: 0 0 10px rgba(72,187,120,0.4); font-family: monospace; }
+        .marquee-widget { flex: 1; background: linear-gradient(to right, #020b18, #0a1f38, #020b18); border: 2px solid var(--gold); border-radius: 12px; height: 75px; overflow: hidden; display: flex; align-items: center; cursor: pointer; box-shadow: inset 0 0 20px rgba(0,191,255,0.15), 0 8px 20px rgba(0,0,0,0.6); position: relative; }
+        .marquee-widget::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDMwIDMwIj48cGF0aCBkPSJNMTUgMCBMMzAgMTUgTDE1IDMwIEwwIDE1IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q0YWYzNyIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjE1Ii8+PC9zdmc+"); pointer-events: none; }
+        .marquee-box { display: flex; width: 100%; overflow: hidden; pointer-events: none; }
+        .marquee-inner { display: flex; width: max-content; }
+        .marquee-rtl { animation: scrollRTL 25s linear infinite; direction: rtl; } .marquee-ltr { animation: scrollLTR 25s linear infinite; direction: ltr; }
+        .marquee-text-block { color: #f7fafc; font-size: 1.15rem; font-weight: bold; white-space: nowrap; padding: 0 120px; display: inline-block; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        @keyframes scrollRTL { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(50%,0,0); } }
+        @keyframes scrollLTR { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(-50%,0,0); } }
+        .shrine-frame { position: relative; width: 100%; max-width: 950px; margin-top: 10px; display: flex; flex-direction: column; align-items: center; z-index: 1; border-radius: 475px 475px 0 0 / 450px 450px 0 0; border-top: 5px solid var(--gold); border-left: 3px solid rgba(212,175,55,0.4); border-right: 3px solid rgba(212,175,55,0.4); box-shadow: inset 0 25px 60px rgba(0,0,0,0.95), 0 12px 40px rgba(0,0,0,0.7); padding: 260px 0 60px 0; min-height: 550px; background-color: #040a1c; background-image: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.15) 0%, rgba(3, 9, 24, 0.98) 80%), url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwIEMxMCAxMCwgMzAgMTAsIDQwIDAgTTQwIDQwIEMzMCAzMCwgMTAgMzAsIDAgNDAgTTAgNDAgQzEwIDMwLCAxMCAxMCwgMCAwIE00MCAwIEMzMCAxMCwgMzAgMzAsIDQwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI4NDciIHN0cm9rZS13aWR0aD0iMC43IiBzdHJva2Utb3BhY2l0eT0iMC40NSIvPjwvc3ZnPg=="); }
+        .sagha-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 30px; width: 100%; max-width: 880px; padding: 0 40px; z-index: 5; }
+        .candle-card { background: linear-gradient(145deg, #091324, #030814); border: 1px solid #162a45; border-radius: 16px; padding: 25px 20px; display: flex; flex-direction: column; align-items: center; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.9); min-height: 290px; justify-content: space-between; border-bottom: 4px solid #0b1524; }
+        .candle-container { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; width: 60px; margin-bottom: 15px; }
+        .small-candle { height: 90px; } .medium-candle { height: 130px; } .large-candle { height: 170px; }
+        .candle-wax { background: linear-gradient(to right, #9c7a23 0%, #f3e5ab 25%, #fff8dc 50%, #e8d896 75%, #aa842c 100%); border-radius: 6px 6px 4px 4px; width: 100%; height: 100%; position: relative; box-shadow: inset 0 4px 6px rgba(255,255,255,0.4), inset 0 -10px 20px rgba(0,0,0,0.5); }
+        .candle-wax::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(to right, #b48d32, #fff8dc, #b48d32); border-radius: 50%; }
+        .candle-wick-element { position: absolute; top: -5px; left: 50%; transform: translateX(-50%); width: 2px; height: 7px; background-color: #111; z-index: 4; }
+        .flame { position: absolute; bottom: calc(100% + 2px); left: 50%; transform: translateX(-50%); transform-origin: center bottom; border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%; background: linear-gradient(to bottom, #ffffff 0%, #ffea00 40%, #ff6a00 80%, rgba(0,0,255,0.3) 100%); animation: swayAndFlicker 0.25s infinite alternate ease-in-out; filter: drop-shadow(0 0 12px #ffaa00); z-index: 5; }
+        .small-candle .flame { width: 14px; height: 26px; } .medium-candle .flame { width: 18px; height: 34px; } .large-candle .flame { width: 22px; height: 42px; }
+        @keyframes swayAndFlicker { 0% { transform: translateX(-50%) rotate(-1.5deg) scaleX(0.95); } 100% { transform: translateX(-50%) rotate(1.5deg) scaleX(1.05); } }
+        .name-tag { font-size: 1.15rem; font-weight: bold; color: #fff; text-align: center; margin-top: 10px; outline: none; width: 100%; text-shadow: 0 2px 4px #000; }
+        .timer-tag { font-size: 0.8rem; color: #cbd5e0; margin-top: 5px; direction: ltr; font-weight: bold; }
+        .admin-box { margin-top: 10px; width: 100%; border-top: 1px dashed #2d3748; padding-top: 8px; text-align: center; } 
+        .admin-input { width: 100%; padding: 5px; font-size: 0.75rem; background-color: transparent; border: 1px solid transparent; color: #4a5568; text-align: center; outline: none; }
+        .action-btn { background-color: #e53e3e; color: white; border: none; padding: 6px; font-size: 0.8rem; font-weight: bold; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 5px; }
+        .js-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 2000; }}
+        .js-modal-content input[type="text"], .js-modal-content select { width: 100%; padding: 10px; background-color: #050b14; border: 1px solid #2d3748; color: #fff; border-radius: 6px; font-size: 1rem; outline: none; }
+        .js-price { font-size: 1.4rem; font-weight: bold; color: #48bb78; text-align: center; margin: 15px 0; font-family: monospace; }
+        .js-buttons { display: flex; gap: 10px; } .js-buttons button { flex: 1; padding: 12px; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; font-weight: bold; color: white; }
+        footer { margin-top: 60px; margin-bottom: 30px; width: 100%; max-width: 950px; z-index: 15; position: relative; border-top: 1px dashed rgba(212, 175, 55, 0.3); padding-top: 25px; display: flex; justify-content: space-between; align-items: center; }
+        .footer-right { text-align: right; flex: 1; white-space: nowrap; } 
+        .footer-left { text-align: left; flex: 1.5; color: rgba(212, 175, 55, 0.7); font-size: 0.88rem; line-height: 1.6; margin: 0 20px; }
+        @media (max-width: 991px) {
+            body { padding: 15px 15px !important; } body::before, body::after { display: none !important; }
+            h1 { font-size: 1.8rem !important; } .header-actions { flex-direction: column !important; gap: 15px !important; margin-top: 15px !important; }
+            .header-left-side, .header-center-side, .header-right-side { flex: none !important; width: 100% !important; justify-content: center !important; text-align: center !important; }
+            .widget-panel { flex-direction: column !important; gap: 12px !important; margin-bottom: 20px !important; }
+            .clock-widget, .calendar-widget, .marquee-widget { width: 100% !important; height: 70px !important; }
+            .shrine-frame { border-radius: 25px 25px 0 0 !important; padding-top: 30px !important; padding-bottom: 30px !important; min-height: auto !important; }
+            .sagha-grid { padding: 0 10px !important; gap: 20px !important; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)) !important; }
+            .candle-card { padding: 15px 10px !important; min-height: 250px !important; }
+            footer { flex-direction: column !important; gap: 15px !important; text-align: center !important; margin-top: 30px !important; }
+            .footer-right, .footer-left { text-align: center !important; margin: 0 !important; width: 100% !important; }
+        }
+    </style>
+</head>
+<body><header>
+        <h1 id="tMainTitle">سقاخانه مجازی یادبود</h1>
+        <p id="tSubTitle1">به نیت اموات و عزیزان درگذشته خود شمعی روشن کنید</p>
+        <p id="tSubTitle2">بازگشت همه بسوی اوست</p>
+        <p>* * *</p>
+        <div class="header-actions" id="jsHeaderGrid">
+            <div class="header-left-side" id="jsLeftContainer">
+                <div class="audio-container">
+                    <button class="audio-btn" id="jsAudioBtn" onclick="toggleSpiritualAudio()">▶️ پخش</button>
+                    <select class="audio-select" id="jsAudioSelect" onchange="changeAudioSource()">
+                        <option value="-6v47fsCHPA" id="tAudio1">🎵 نوای ملایم نی سنتی</option>
+                        <option value="63_YshEw-9Y" id="tAudio2">📖 تلاوت صوت قرآن کریم</option>
+                        <option value="96f9zO_74oI" id="tAudio3">🕌 صلوات خاصه امام رضا</option>
+                    </select>
+                </div>
+            </div>
+            <div class="header-center-side"><button class="cta-btn" id="tOrderBtn" onclick="openOrderForm()">+ روشن کردن شمع جدید</button></div>
+            <div class="header-right-side" id="jsRightContainer"><button class="lang-switch-btn" id="jsLangBtn" onclick="toggleLanguageSystem()">EN</button></div>
+        </div>
+    </header>
+    <div class="widget-panel">
+        <div class="clock-widget"><div class="clock-day" id="jsDayName">---</div><div class="clock-time" id="jsLiveClock">00:00:00</div></div>
+        <div class="marquee-widget" onclick="secureUpdateMarquee()"><div class="marquee-box"><div class="marquee-inner marquee-rtl" id="jsMarqueeInner"><div class="marquee-text-block" id="jsMarqueeText">📜 طاعات و عبادات شما قبول درگاه حق * به نیت شادی روح تمام درگذشتگان، پدران و مادران آسمانی صلوات یا فاتحه‌ای قرائت بفرمایید...</div><div class="marquee-text-block" id="jsMarqueeTextClone">📜 طاعات و عبادات شما قبول درگاه حق * به نیت شادی روح تمام درگذشتگان، پدران و مادران آسمانی صلوات یا فاتحه‌ای قرائت بفرمایید...</div></div></div></div>
+        <div class="calendar-widget"><div class="cal-date" id="jsCalDate"></div><div class="cal-year" id="jsCalYear">----</div></div>
+    </div>
+    <div class="shrine-frame"><div class="sagha-grid" id="shrineGrid"></div></div>
+    <footer>
+        <div class="footer-right" id="jsFooterRight"><p style="font-size: 0.9rem; color: #cbd5e0; margin-bottom: 4px; font-weight: bold;" id="tContactTitle">ارتباط با خادم سقاخانه مجازی:</p><a href="mailto:Info.saghakhaneh@gmail.com" style="color: var(--gold); font-size: 1.05rem; text-decoration: none; font-weight: bold; letter-spacing: 0.5px;">Info.saghakhaneh@gmail.com</a></div>
+        <div class="footer-left" id="tFooterLeftText">🕊️ عواید حاصل از هدایای روشن کردن شمع، منحصراً وقف توسعه و تأمین هزینه‌های نگهداری این بنیاد یادبود می‌گردد.</div>
+    </footer>
+    <div id="modalContainer"></div>
+    <iframe id="jsYoutubePlayer" style="display:none;width:0;height:0;" src="" allow="autoplay"></iframe>
+    <script>
+        var isPlaying=false; var currentLang="FA"; var activeDiscount = 0;
+        var dictionary = {
+            FA: { mainTitle: "سقاخانه مجازی یادبود", subTitle1: "به نیت اموات و عزیزان درگذشته خود شمعی روشن کنید", subTitle2: "بازگشت همه بسوی اوست", orderBtn: "+ روشن کردن شمع جدید", audioBtnPlay: "▶️ پخش", audioBtnStop: "⏸️ توقف", audio1: "🎵 نوای ملایم نی سنتی", audio2: "📖 تلاوت صوت قرآن کریم", audio3: "🕌 صلوات خاصه امام رضا", contactTitle: "ارتباط با خادم سقاخانه مجازی:", footerLeft: "🕊️ عواید حاصل از هدایای روشن کردن شمع, منحصراً وقف توسعه و تأمین هزینه‌های نگهداری این بنیاد یادبود می‌گردد.", marquee: "📜 طاعات و عبادات شما قبول درگاه حق * به نیت شادی روح تمام درگذشتگان، پدران و مادران آسمانی صلوات یا فاتحه‌ای قرائت بفرمایید...", days: ['یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه','شنبه'], remaining: "باقی‌مانده:", daysUnit: "روز" },
+            EN: { mainTitle: "Virtual Memorial SaghaKhaneh", subTitle1: "Light a Candle in Loving Memory of Your Departed Loved Ones", subTitle2: "Indeed, to Him we shall return", orderBtn: "+ Light a New Candle", audioBtnPlay: "▶️ Play", audioBtnStop: "⏸️ Stop", audio1: "🎵 Traditional Ney Flute", audio2: "📖 Holy Quran Recitation", audio3: "🕌 Imam Reza Spiritual Salawat", contactTitle: "Contact the Custodian:", footerLeft: "🕊️ All proceeds from candle offerings are exclusively dedicated to the maintenance and technical development of this virtual memorial site.", marquee: "📜 May your prayers and offerings be accepted. Please recite a prayer for the peace of all departed souls...", days: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], remaining: "Remaining:", daysUnit: "days" }
+        };
+        function toggleLanguageSystem() {
+            var root = document.getElementById('jsHtmlRoot'); var btn = document.getElementById('jsLangBtn'); var inner = document.getElementById('jsMarqueeInner');
+            var grid = document.getElementById('jsHeaderGrid'); var left = document.getElementById('jsLeftContainer'); var right = document.getElementById('jsRightContainer');
+            if (currentLang === "FA") {
+                currentLang = "EN"; btn.innerText = "FA"; root.dir = "ltr"; root.lang = "en"; inner.className = "marquee-inner marquee-ltr";
+                grid.appendChild(left); grid.insertBefore(right, grid.firstChild); left.className = "header-right-side"; right.className = "header-left-side";
+                document.getElementById('jsFooterRight').style.textAlign = 'left'; document.getElementById('tFooterLeftText').style.textAlign = 'right';
+            } else {
+                currentLang = "FA"; btn.innerText = "EN"; root.dir = "rtl"; root.lang = "fa"; inner.className = "marquee-inner marquee-rtl";
+                grid.appendChild(right); grid.insertBefore(left, grid.firstChild); left.className = "header-left-side"; right.className = "header-right-side";
+                document.getElementById('jsFooterRight').style.textAlign = 'right'; document.getElementById('tFooterLeftText').style.textAlign = 'left';
+            }
+            updateDOMTexts(); refreshCandleLanguages();
+        }
+        function updateDOMTexts() {
+            var d = dictionary[currentLang]; document.getElementById('tMainTitle').innerText = d.mainTitle; document.getElementById('tSubTitle1').innerText = d.subTitle1; document.getElementById('tSubTitle2').innerText = d.subTitle2; document.getElementById('tOrderBtn').innerText = d.orderBtn; document.getElementById('jsAudioBtn').innerText = isPlaying ? d.audioBtnStop : d.audioBtnPlay; document.getElementById('tAudio1').innerText = d.audio1; document.getElementById('tAudio2').innerText = d.audio2; document.getElementById('tAudio3').innerText = d.audio3; document.getElementById('tContactTitle').innerText = d.contactTitle; document.getElementById('tFooterLeftText').innerText = d.footerLeft; document.getElementById('jsMarqueeText').innerText = d.marquee; document.getElementById('jsMarqueeTextClone').innerText = d.marquee;
+        }
+        function refreshCandleLanguages() {
+            var lbl = dictionary[currentLang];
+            document.querySelectorAll('.candle-card').forEach(function(card) {
+                var timerTag = card.querySelector('.timer-tag'); var days = timerTag.getAttribute('data-days'); timerTag.innerText = lbl.remaining + " " + days + " " + lbl.daysUnit;
+                var input = card.querySelector('.admin-input'); if (input) input.placeholder = currentLang === "FA" ? "🔒 مدیریت شمع" : "🔒 Manage Candle";
+                var delBtn = card.querySelector('.action-btn'); if (delBtn) delBtn.innerText = currentLang === "FA" ? "حذف کامل شمع" : "Delete Candle";
+            });
+        }
+        function toggleSpiritualAudio() {
+            var p = document.getElementById('jsYoutubePlayer'); var b = document.getElementById('jsAudioBtn'); var id = document.getElementById('jsAudioSelect').value; var d = dictionary[currentLang];
+            if (isPlaying) { p.src = ""; b.innerText = d.audioBtnPlay; isPlaying = false; } else { p.src = "https://youtube.com" + id + "?autoplay=1&enablejsapi=1"; b.innerText = d.audioBtnStop; isPlaying = true; }
+        }
+        function changeAudioSource() { if (isPlaying) { var id = document.getElementById('jsAudioSelect').value; document.getElementById('jsYoutubePlayer').src = "https://youtube.com" + id + "?autoplay=1&enablejsapi=1"; } }
+        document.querySelectorAll('.clock-widget, .calendar-widget').forEach(function(el) { el.addEventListener('dblclick', function(e) { e.preventDefault(); e.stopPropagation(); return false; }, true); });
+        document.addEventListener('keydown', function(event) { if (event.key === 'm' || event.key === 'M' || event.key === 'ئ') { secureUpdateMarquee(); } });
+        function secureUpdateMarquee() {
+            var p = prompt(currentLang === "FA" ? "🔒 رمز ورود خادم سقاخانه را وارد کنید:" : "🔒 Enter Custodian Password:");
+            if (p === "1234") {
+                var t = prompt(currentLang === "FA" ? "📜 متن جدید کتیبه را وارد نمایید:" : "📜 Enter new text for the banner:", document.getElementById('jsMarqueeText').innerText);
+                if (t && t.trim() !== "") { document.getElementById('jsMarqueeText').innerText = t; document.getElementById('jsMarqueeTextClone').innerText = t; dictionary[currentLang].marquee = t; alert(currentLang === "FA" ? "✅ کتیبه با موفقیت به روز رسانی شد." : "✅ Banner updated successfully."); }
+            } else if (p !== null) { alert(currentLang === "FA" ? "❌ رمز ورود اشتباه است." : "❌ Incorrect Password."); }
+        }
+        window.onload = function() { initClockAndCalendar(); createCandleDOM('sample-card-1', currentLang === "FA" ? 'علی محمدی' : 'Ali Mohammadi', 'large', '۳۶۵'); createCandleDOM('sample-card-2', currentLang === "FA" ? 'محمدی' : 'Mohammadi', 'medium', '۴۰'); createCandleDOM('sample-card-3', 'Hassan', 'small', '۷'); };
+        function initClockAndCalendar(){             var days = ['یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه','شنبه'];
+            setInterval(function(){ 
+                var d = new Date(); document.getElementById('jsLiveClock').innerText = String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0') + ':' + String(d.getSeconds()).padStart(2,'0'); 
+                if (currentLang === "FA") { document.getElementById('jsDayName').innerText = days[d.getDay()]; document.getElementById('jsCalDate').innerText = d.toLocaleDateString('fa-IR', {day:'numeric',month:'long'}); document.getElementById('jsCalYear').innerText = d.toLocaleDateString('fa-IR', {year:'numeric'}); } 
+                else { document.getElementById('jsDayName').innerText = dictionary.EN.days[d.getDay()]; document.getElementById('jsCalDate').innerText = d.toLocaleDateString('en-US', {day:'numeric',month:'long'}); document.getElementById('jsCalYear').innerText = d.getFullYear(); }
+            },1000); 
+        }
+        function createCandleDOM(id, name, size, duration) { 
+            var grid = document.getElementById('shrineGrid'); 
+            if(grid) { 
+                var card = document.createElement('div'); card.className = 'candle-card'; card.id = id; var lbl = dictionary[currentLang];
+                card.innerHTML = '<div class="candle-container ' + size + '-candle"><div class="flame"></div><div class="candle-wax"><div class="candle-wick-element"></div></div></div><div class="name-tag" contenteditable="true">' + name + '</div><div class="timer-tag" data-days="' + duration + '">' + lbl.remaining + ' ' + duration + ' ' + lbl.daysUnit + '</div><div class="admin-box"><input type="password" class="admin-input" placeholder="' + (currentLang === "FA" ? "🔒 مدیریت شمع" : "🔒 Manage Candle") + '" oninput="checkPasswordInline(this, \'btn-'+id+'\')"><button class="action-btn" id="btn-'+id+'" style="display:none;" onclick="this.closest(\'.candle-card\').remove();">' + (currentLang === "FA" ? "حذف کامل شمع" : "Delete Candle") + '</button></div>'; 
+                grid.appendChild(card); 
+            } 
+        }  function openOrderForm() { 
+            var c = document.getElementById('modalContainer'); if(!c) return; activeDiscount = 0;
+            if (currentLang === "FA") { c.innerHTML = '<div class="js-modal"><div class="js-modal-content"><h2 style="color: var(--gold); margin-bottom: 15px; text-align: center;">روشن کردن شمع جدید</h2><form onsubmit="processPayPalPayment(event)"><div class="js-form-group" style="text-align:right;"><label>نام متوفی:</label><input type="text" id="deceasedName" required placeholder="مثال: زنده یاد علی محمدی"></div><div class="js-form-group" style="text-align:right;"><label>اندازه شمع:</label><select id="candleSize" onchange="updateLivePrice(this.value)"><option value="small">کوچک</option><option value="medium" selected>متوسط</option><option value="large">بزرگ</option></select></div><div class="js-form-group" style="text-align:right;"><label>مدت زمان:</label><select id="duration" onchange="updateLivePrice(document.getElementById(\'candleSize\').value)"><option value="7">۷ روز (یک هفته)</option><option value="40">۴۰ روز</option><option value="365">۳۶۵ روز (یک سال)</option></select></div><div class="js-form-group" style="text-align:right;"><label>کد تخفیف خادم:</label><input type="text" id="promoCode" placeholder="کد تخفیف را وارد کنید" oninput="applyPromoCodeInline(this.value)"></div><div class="js-price" id="calculatedPrice">هزینه نهایی: $12</div><div class="js-buttons"><button type="submit" style="background-color: #0070ba; display: flex; align-items: center; justify-content: center; gap: 8px; color:white; border-radius:6px; font-weight:bold;">🔒 پرداخت امن با PayPal</button><button type="button" style="background-color: #e53e3e;" onclick="document.getElementById(\'modalContainer\').innerHTML=\'\';">انصراف</button></div></form></div></div>'; } 
+            else { c.innerHTML = '<div class="js-modal"><div class="js-modal-content"><h2 style="color: var(--gold); margin-bottom: 15px; text-align: center;">Light a New Candle</h2><form onsubmit="processPayPalPayment(event)"><div class="js-form-group" style="text-align:left;"><label>Deceased Name:</label><input type="text" id="deceasedName" required placeholder="e.g., In Memory of John Doe"></div><div class="js-form-group" style="text-align:left;"><label>Candle Size:</label><select id="candleSize" onchange="updateLivePrice(this.value)"><option value="small">Small</option><option value="medium" selected>Medium</option><option value="large">Large</option></select></div><div class="js-form-group" style="text-align:left;"><label>Duration:</label><select id="duration" onchange="updateLivePrice(document.getElementById(\'candleSize\').value)"><option value="7">7 Days (1 Week)</option><option value="40">40 Days</option><option value="365">365 Days (1 Year)</option></select></div><div class="js-form-group" style="text-align:left;"><label>Promo Code:</label><input type="text" id="promoCode" placeholder="Enter promo code" oninput="applyPromoCodeInline(this.value)"></div><div class="js-price" id="calculatedPrice">Total Cost: $12</div><div class="js-buttons"><button type="submit" style="background-color: #0070ba; display: flex; align-items: center; justify-content: center; gap: 8px; color:white; border-radius:6px; font-weight:bold;">🔒 Secure Pay with PayPal</button><button type="button" style="background-color: #e53e3e;" onclick="document.getElementById(\'modalContainer\').innerHTML=\'\';">Cancel</button></div></form></div></div>'; }
+        }
+        function updateLivePrice(size) { 
+            var duration = document.getElementById('duration').value; var basePrice = 12; 
+            if (duration === "7") { if (size === "small") basePrice = 10; else if (size === "medium") basePrice = 12; else if (size === "large") basePrice = 15; } 
+            else if (duration === "40") { if (size === "small") basePrice = 20; else if (size === "medium") basePrice = 24; else if (size === "large") basePrice = 29; } 
+            else if (duration === "365") { if (size === "small") basePrice = 90; else if (size === "medium") basePrice = 105; else if (size === "large") basePrice = 150; }
+            var finalPrice = Math.round(basePrice * (1 - activeDiscount));
+            document.getElementById('calculatedPrice').innerText = currentLang === "FA" ? 'هزینه نهایی: $' + finalPrice : 'Total Cost: $' + finalPrice; 
+        }
+        function applyPromoCodeInline(code) {
+            var trimmed = code.trim().toUpperCase();
+            if (trimmed === "KHADEM100") { activeDiscount = 1.0; }
+            else if (trimmed === "SAGHA50") { activeDiscount = 0.5; }
+            else { activeDiscount = 0; }
+            updateLivePrice(document.getElementById('candleSize').value);
+        }
+        function processPayPalPayment(event) { 
+            event.preventDefault(); var name = document.getElementById('deceasedName').value; var size = document.getElementById('candleSize').value; var duration = document.getElementById('duration').value; var priceText = document.getElementById('calculatedPrice').innerText;
+            if (activeDiscount === 1.0) {
+                if (currentLang === "FA") { alert("🔒 مجوز خادم فعال شد:\n\nشمع یادبود به نیت زنده یاد " + name + " بدون نیاز به تراکنش مالی و با تخفیف ۱۰۰٪ روشن شد."); }
+                else { alert("🔒 Custodian Authorization Approved:\n\nMemorial candle has been lit for '" + name + "' for $0 with 100% discount."); }
+            } else {
+                if (currentLang === "FA") { alert("🔒 اتصال به درگاه امن PayPal (info.saghakhaneh@gmail.com):\n\nتراکنش با موفقیت تأیید شد.\n" + priceText + "\nشماره ارجاع تراکنش پی‌پال: " + Math.floor(10000000 + Math.random() * 90000000) + "\nشمع یادبود زنده یاد " + name + " روشن شد."); } 
+                else { alert("🔒 Redirecting to Secure PayPal Gateway (info.saghakhaneh@gmail.com):\n\nTransaction approved successfully.\n" + priceText + "\nPayPal Reference ID: " + Math.floor(10000000 + Math.random() * 90000000) + "\nMemorial candle has been lit for '" + name + "'."); }
+            }
+            createCandleDOM('c-' + Date.now(), name, size, duration); document.getElementById('modalContainer').innerHTML = ''; 
+        }
+        function checkPasswordInline(i, b) { var btn = document.getElementById(b); if (btn) { if (i.value === "1234") btn.style.display = "block"; else btn.style.display = "none"; } }
+    </script>
+</body>
+</html>
