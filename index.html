@@ -7,27 +7,27 @@
     <style>
         :root { --card-bg: rgba(6, 13, 26, 0.96); --gold: #d4af37; --glow: rgba(212, 175, 55, 0.3); }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, Geneva, sans-serif; }
-        
         body { background-color: #020612; color: #e2e8f0; padding: 20px 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; position: relative; overflow-x: hidden; }
         
-        /* قفل کردن حاشیه‌های طلایی متقاطع اسلیمی به حاشیه کادر اصلی جهت وضوح کامل در مانیتورهای عریض */
         .main-wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 1100px; padding: 0 80px; position: relative; }
-        .main-wrapper::before, .main-wrapper::after { content: ''; position: absolute; top: 0; width: 60px; height: 100%; min-height: 100vh; z-index: 10; background-color: #040c16; box-shadow: 0 0 25px rgba(0,0,0,0.8); background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSIxMjAiIHZpZXdCb3g9IjAgMCA2MCAxMjAiPjxwYXRoIGQ9Ik0zMCAwIEM0NSAyMCwgNTUgNDAsIDMwIDYwIEMxNSA0MCwgNSAyMCwgMzAgMCBaIE0zMCA2MCBDNDUgODAsIDU1IDEwMCwgMzAgMTIwIEMxNSAxMDAsIDUgODAsIDMwIDYwIFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q0YWYzNyIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjYiLz48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMDBiZmZmIi8+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMyIgZmlsbD0iIzAwYmZmZiIvPjwvc3ZnPg="); background-repeat: repeat-y; }
-        .main-wrapper::before { right: 0; border-left: 2px solid var(--gold); } 
-        .main-wrapper::after { left: 0; border-right: 2px solid var(--gold); }
+        .main-wrapper::before, .main-wrapper::after { content: ''; position: fixed; top: 0; width: 60px; height: 100vh; z-index: 10; background-color: #040c16; box-shadow: 0 0 25px rgba(0,0,0,0.8); background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSIxMjAiIHZpZXdCb3g9IjAgMCA2MCAxMjAiPjxwYXRoIGQ9Ik0zMCAwIEM0NSAyMCwgNTUgNDAsIDMwIDYwIEMxNSA0MCwgNSAyMCwgMzAgMCBaIE0zMCA2MCBDNDUgODAsIDU1IDEwMCwgMzAgMTIwIEMxNSAxMDAsIDUgODAsIDMwIDYwIFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q0YWYzNyIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjYiLz48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMDBiZmZmIi8+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMyIgZmlsbD0iIzAwYmZmZiIvPjwvc3ZnPg=="); background-repeat: repeat-y; }
+        .main-wrapper::before { right: 0; border-left: 2px solid var(--gold); } .main-wrapper::after { left: 0; border-right: 2px solid var(--gold); }
         
         header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid var(--gold); padding-bottom: 20px; width: 100%; text-shadow: 0 3px 6px rgba(0,0,0,0.9); z-index: 15; position: relative; }
         h1 { color: var(--gold); font-size: 2.3rem; margin-bottom: 10px; font-weight: bold; }
         .header-actions { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 25px; z-index: 20; gap: 20px; }
         .header-left-side, .header-center-side, .header-right-side { flex: 1; display: flex; justify-content: center; }
         .header-left-side { justify-content: flex-start; } .header-right-side { justify-content: flex-end; }
+        
         .cta-btn { background-color: var(--gold); color: #000; border: none; padding: 12px 35px; font-size: 1.05rem; font-weight: bold; border-radius: 25px; cursor: pointer; box-shadow: 0 0 15px var(--gold); white-space: nowrap; transition: transform 0.2s; }
         .cta-btn:hover { transform: scale(1.03); }
         .lang-switch-btn { background-color: transparent; border: 2px solid var(--gold); color: var(--gold); padding: 8px 20px; font-size: 1rem; font-weight: bold; border-radius: 20px; cursor: pointer; min-width: 65px; }
+        
         .audio-container { display: flex; align-items: center; background-color: #071222; border: 2px solid var(--gold); border-radius: 25px; padding: 4px 15px; gap: 10px; }
         .audio-select { background: transparent; border: none; color: #fff; font-size: 0.95rem; font-weight: bold; outline: none; cursor: pointer; }
         .audio-select option { background-color: #071222; color: #fff; }
         .audio-btn { background: none; border: none; color: var(--gold); font-size: 1.2rem; cursor: pointer; }
+        
         .widget-panel { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 25px; gap: 15px; user-select: none; z-index: 15; position: relative; }
         .clock-widget, .calendar-widget { background: linear-gradient(145deg, #071424, #020712); border: 2px solid var(--gold); border-radius: 12px; padding: 12px 20px; min-width: 160px; text-align: center; color: #fff; height: 75px; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,0.6); }
         .clock-day, .cal-date { font-size: 0.95rem; color: var(--gold); font-weight: bold; }
@@ -42,7 +42,8 @@
         @keyframes scrollRTL { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(50%,0,0); } }
         @keyframes scrollLTR { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(-50%,0,0); } }
         
-        .shrine-frame { position: relative; width: 100%; margin-top: 10px; display: flex; flex-direction: column; align-items: center; z-index: 1; border-radius: 475px 475px 0 0 / 450px 450px 0 0; border-top: 5px solid var(--gold); border-left: 3px solid rgba(212,175,55,0.4); border-right: 3px solid rgba(212,175,55,0.4); box-shadow: inset 0 25px 60px rgba(0,0,0,0.95), 0 12px 40px rgba(0,0,0,0.7); padding: 220px 0 60px 0; height: auto; min-height: 550px; background-color: #030a1c; background-image: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.25) 0%, rgba(2, 6, 20, 0.99) 70%), url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwIEMxMCAxMCwgMzAgMTAsIDQwIDAgTTQwIDQwIEMzMCAzMCwgMTAgMzAsIDAgNDAgTTAgNDAgQzEwIDMwLCAxMCAxMCwgMCAwIE00MCAwIEMzMCAxMCwgMzAgMzAsIDQwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyYTQ4N2IiIHN0cm9rZT0iMS41IiBzdHJva2Utb3BhY2l0eT0iMC45NSIvPjwvc3ZnPg=="); }
+        /* بهینه‌سازی و تثبیت درخشندگی بافت کاشی خشتی لاجوردی معرق دایمی در کل کادر محراب */
+        .shrine-frame { position: relative; width: 100%; margin-top: 10px; display: flex; flex-direction: column; align-items: center; z-index: 1; border-radius: 475px 475px 0 0 / 450px 450px 0 0; border-top: 5px solid var(--gold); border-left: 3px solid rgba(212,175,55,0.4); border-right: 3px solid rgba(212,175,55,0.4); box-shadow: inset 0 25px 60px rgba(0,0,0,0.95), 0 12px 40px rgba(0,0,0,0.7); padding: 220px 0 60px 0; height: auto; min-height: 580px; background-color: #030a1c; background-image: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.25) 0%, rgba(2, 6, 20, 0.99) 70%), url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwIEMxMCAxMCwgMzAgMTAsIDQwIDAgTTQwIDQwIEMzMCAzMCwgMTAgMzAsIDAgNDAgTTAgNDAgQzEwIDMwLCAxMCAxMCwgMCAwIE00MCAwIEMzMCAxMCwgMzAgMzAsIDQwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyYTQ4N2IiIHN0cm9rZT0iMS41IiBzdHJva2Utb3BhY2l0eT0iMC45NSIvPjwvc3ZnPg=="); }
         
         .sagha-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 30px; width: 100%; max-width: 880px; padding: 0 40px; z-index: 5; }
         .candle-card { background: linear-gradient(145deg, #091324, #030814); border: 1px solid #162a45; border-radius: 16px; padding: 25px 20px; display: flex; flex-direction: column; align-items: center; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.9); min-height: 290px; justify-content: space-between; border-bottom: 4px solid #0b1524; }
@@ -58,7 +59,8 @@
         .timer-tag { font-size: 0.8rem; color: #cbd5e0; margin-top: 5px; direction: ltr; font-weight: bold; }
         .admin-box { margin-top: 10px; width: 100%; border-top: 1px dashed #2d3748; padding-top: 8px; text-align: center; } 
         .admin-input { width: 100%; padding: 5px; font-size: 0.75rem; background-color: transparent; border: 1px solid transparent; color: #4a5568; text-align: center; outline: none; }
-        .action-btn { background-color: #e53e3e; color: white; border: none; padding: 6px; font-size: 0.8rem; font-weight: bold; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 5px; } .js-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 2000; }
+        .action-btn { background-color: #e53e3e; color: white; border: none; padding: 6px; font-size: 0.8rem; font-weight: bold; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 5px; }
+         .js-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 2000; }
         .js-modal-content { background-color: var(--card-bg); border: 2px solid var(--gold); padding: 30px; border-radius: 15px; width: 90%; max-width: 450px; box-shadow: 0 0 35px var(--gold); } .js-form-group { margin-bottom: 15px; } .js-modal-content label { display: block; margin-bottom: 6px; color: var(--gold); font-weight: bold; }
         .js-modal-content input[type="text"], .js-modal-content select { width: 100%; padding: 10px; background-color: #050b14; border: 1px solid #2d3748; color: #fff; border-radius: 6px; font-size: 1rem; outline: none; }
         .js-price { font-size: 1.4rem; font-weight: bold; color: #48bb78; text-align: center; margin: 10px 0; font-family: monospace; }
@@ -101,9 +103,9 @@
                 <div class="header-center-side"><button class="cta-btn" id="tOrderBtn" onclick="openOrderForm()">+ روشن کردن شمع جدید</button></div>
                 <div class="header-right-side" id="jsRightContainer"><button class="lang-switch-btn" id="jsLangBtn" onclick="toggleLanguageSystem()">EN</button></div>
             </div>
-        </header><div class="widget-panel">
+        </header> <div class="widget-panel">
             <div class="clock-widget"><div class="clock-day" id="jsDayName">---</div><div class="clock-time" id="jsLiveClock">00:00:00</div></div>
-            <div class="marquee-widget" onclick="secureUpdateMarquee()"><div class="marquee-box"><div class="marquee-inner marquee-rtl" id="jsMarqueeInner"><div class="marquee-text-block" id="jsMarqueeText">📜 این سایت در حال راه‌اندازی و تکمیل است. برای ارتباط با ما از طریق آدرس ایمیل پائین این صفحه تماس گرفته شود * به نیت شادی روح تمام درگذشتگان، پدران و مادران آسمانی صلوات یا فاتحه‌ای قرائت بفرمایید...</div><div class="marquee-text-block" id="jsMarqueeTextClone">📜 این سایت در حال راه‌اندازی و تکمیل است. برای ارتباط با ما از طریق آدرس ایمیل پائین این صفحه تماس گرفته شود * به نیت شادی روح تمام درگذشتگان، پدران و مادران آسمانی صلوات یا فاتحه‌ای قرائت بفرمایید...</div></div></div></div>
+            <div class="marquee-widget" onclick="secureUpdateMarquee()"><div class="marquee-box"><div class="marquee-inner marquee-rtl" id="jsMarqueeInner"><div class="marquee-text-block" id="jsMarqueeText">این سایت در حال راه‌اندازی و تکمیل است، برای ارتباط با ما از طریق آدرس ایمیل پائین این صفحه تماس گرفته شود * * به نیت شادی روح تمام درگذشتگان, پدران و مادران آسمانی صلوات یا فاتحه‌ای قرائت بفرمایید...</div><div class="marquee-text-block" id="jsMarqueeTextClone">این سایت در حال راه‌اندازی و تکمیل است، برای ارتباط با ما از طریق آدرس ایمیل پائین این صفحه تماس گرفته شود * * به نیت شادی روح تمام درگذشتگان, پدران و مادران آسمانی صلوات یا فاتحه‌ای قرائت بفرمایید...</div></div></div></div>
             <div class="calendar-widget"><div class="cal-date" id="jsCalDate"></div><div class="cal-year" id="jsCalYear">----</div></div>
         </div>
         <div class="shrine-frame"><div class="sagha-grid" id="shrineGrid"></div></div>
@@ -147,7 +149,7 @@
         }
         function toggleSpiritualAudio() {
             var p = document.getElementById('jsAudioPlayer'); var b = document.getElementById('jsAudioBtn'); var src = document.getElementById('jsAudioSelect').value; var d = dictionary[currentLang];
-            if (isPlaying) { p.pause(); b.innerText = d.audioBtnPlay; isPlaying = false; } else { p.src = src; p.play().catch(function(){ alert("لطفاً ابتدا یک‌بار روی صفحه کلیک کنید تا قفل صوت مرورگر باز شود."); }); b.innerText = d.audioBtnStop; isPlaying = true; }
+            if (isPlaying) { p.pause(); b.innerText = d.audioBtnPlay; isPlaying = false; } else { p.src = src; p.play().catch(function(){ alert("🔒 با کلیک روی این دکمه قفل امنیتی مرورگر دور زده شده و پخش آغاز می‌گردد."); p.play(); }); b.innerText = d.audioBtnStop; isPlaying = true; }
         }
         function changeAudioSource() { if (isPlaying) { var src = document.getElementById('jsAudioSelect').value; var p = document.getElementById('jsAudioPlayer'); p.src = src; p.play(); } }
         document.querySelectorAll('.clock-widget, .calendar-widget').forEach(function(el) { el.addEventListener('dblclick', function(e) { e.preventDefault(); e.stopPropagation(); return false; }, true); });
@@ -159,7 +161,7 @@
         }
         function secureUpdateMarquee() {
             var p = prompt(currentLang === "FA" ? "🔒 رمز ورود خادم سقاخانه را وارد کنید:" : "🔒 Enter Custodian Password:");
-            if (p && hashDJB2(p) === 1690987178) {
+            if (p === "Jalil40") {
                 var t = prompt(currentLang === "FA" ? "📜 متن جدید کتیبه را وارد نمایید:" : "📜 Enter new text for the banner:", document.getElementById('jsMarqueeText').innerText);
                 if (t && t.trim() !== "") { document.getElementById('jsMarqueeText').innerText = t; document.getElementById('jsMarqueeTextClone').innerText = t; dictionary[currentLang].marquee = t; localStorage.setItem('saghaMarquee', t); alert(currentLang === "FA" ? "✅ کتیبه با موفقیت به روز رسانی شد و ذخیره گردید." : "✅ Banner updated and saved successfully."); }
             } else if (p !== null) { alert(currentLang === "FA" ? "❌ رمز ورود اشتباه است." : "❌ Incorrect Password."); }
@@ -174,7 +176,7 @@
             var days = ['یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه','شنبه'];
             setInterval(function(){ 
                 var d = new Date(); document.getElementById('jsLiveClock').innerText = String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0') + ':' + String(d.getSeconds()).padStart(2,'0'); 
-                if (currentLang === "FA") { document.getElementById('jsDayName').innerText = days[d.getDay()]; document.getElementById('jsCalDate').innerText = d.toLocaleDateString('fa-IR', {day:'numeric',month:'long'}); document.getElementById('jsCalYear').innerText = d.toLocaleDateString('fa-IR', {year:'numeric'}); }                 else { document.getElementById('jsDayName').innerText = dictionary.EN.days[d.getDay()]; document.getElementById('jsCalDate').innerText = d.toLocaleDateString('en-US', {day:'numeric',month:'long'}); document.getElementById('jsCalYear').innerText = d.getFullYear(); }
+                if (currentLang === "FA") { document.getElementById('jsDayName').innerText = days[d.getDay()]; document.getElementById('jsCalDate').innerText = d.toLocaleDateString('fa-IR', {day:'numeric',month:'long'}); document.getElementById('jsCalYear').innerText = d.toLocaleDateString('fa-IR', {year:'numeric'}); }    else { document.getElementById('jsDayName').innerText = dictionary.EN.days[d.getDay()]; document.getElementById('jsCalDate').innerText = d.toLocaleDateString('en-US', {day:'numeric',month:'long'}); document.getElementById('jsCalYear').innerText = d.getFullYear(); }
             },1000); 
         }
         function createCandleDOM(id, name, size, duration) { 
@@ -215,7 +217,7 @@
             }
             createCandleDOM('c-' + Date.now(), name, size, duration); document.getElementById('modalContainer').innerHTML = ''; 
         }
-        function checkPasswordInline(i, b) { var btn = document.getElementById(b); if (btn) { if (hashDJB2(i.value) === 1690987178) btn.style.display = "block"; else btn.style.display = "none"; } }
+        function checkPasswordInline(i, b) { var btn = document.getElementById(b); if (btn) { if (i.value === "Jalil40") btn.style.display = "block"; else btn.style.display = "none"; } }
     </script>
 </body>
 </html>
