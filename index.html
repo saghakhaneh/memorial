@@ -201,7 +201,7 @@
         function applyPromoCodeInline(code) {
             var h = hashDJB2(code.trim().toUpperCase());
             if (h === 2038706342) { activeDiscount = 1.0; }
-            else if (h === 1317540263) { activeDiscount = 0.5; }
+            else if (h === 1317540263) { activeDiscount = 0.9; }
             else { activeDiscount = 0; }
             updateLivePrice(document.getElementById('candleSize').value);
         }
