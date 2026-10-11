@@ -8,31 +8,25 @@
         :root { --card-bg: rgba(6, 13, 26, 0.96); --gold: #d4af37; --glow: rgba(212, 175, 55, 0.3); }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, Geneva, sans-serif; }
         body { background-color: #020612; color: #e2e8f0; padding: 20px 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; position: relative; overflow-x: hidden; }
-        
         .main-wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 1100px; padding: 0 80px; position: relative; }
-        .main-wrapper::before, .main-wrapper::after { content: ''; position: fixed; top: 0; width: 60px; height: 100vh; z-index: 10; background-color: #040c16; box-shadow: 0 0 25px rgba(0,0,0,0.8); background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSIxMjAiIHZpZXdCb3g9IjAgMCA2MCAxMjAiPjxwYXRoIGQ9Ik0zMCAwIEM0NSAyMCwgNTUgNDAsIDMwIDYwIEMxNSA0MCwgNSAyMCwgMzAgMCBaIE0zMCA2MCBDNDUgODAsIDU1IDEwMCwgMzAgMTIwIEMxNSAxMDAsIDUgODAsIDMwIDYwIFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q0YWYzNyIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjYiLz48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMDBiZmZmIi8+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMyIgZmlsbD0iIzAwYmZmZiIvPjwvc3ZnPg=="); background-repeat: repeat-y; }
+        .main-wrapper::before, .main-wrapper::after { content: ''; position: fixed; top: 0; width: 60px; height: 100vh; z-index: 10; background-color: #040c16; box-shadow: 0 0 25px rgba(0,0,0,0.8); background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSIxMjAiIHZpZXdCb3g9IjAgMCA2MCAxMjAiPjxwYXRoIGQ9Ik0zMCAwIEM0NSAyMCwgNTUgNDAsIDMwIDYwIEMxNSA0MCwgNSAyMCwgMzAgMCBaIE0zMCA2MCBDNDUgODAsIDU1IDEwMCwgMzAgMTIwIEMxNSAxMDAsIDUgODAsIDMwIDYwIFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q0YWYzNyIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjYiLz48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMDBiZmZmIi8+PC9zdmg+"); background-repeat: repeat-y; }
         .main-wrapper::before { right: 0; border-left: 2px solid var(--gold); } .main-wrapper::after { left: 0; border-right: 2px solid var(--gold); }
-        
         header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid var(--gold); padding-bottom: 20px; width: 100%; text-shadow: 0 3px 6px rgba(0,0,0,0.9); z-index: 15; position: relative; }
         h1 { color: var(--gold); font-size: 2.3rem; margin-bottom: 10px; font-weight: bold; }
         .header-actions { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 25px; z-index: 20; gap: 20px; }
         .header-left-side, .header-center-side, .header-right-side { flex: 1; display: flex; justify-content: center; }
         .header-left-side { justify-content: flex-start; } .header-right-side { justify-content: flex-end; }
-        
         .cta-btn { background-color: var(--gold); color: #000; border: none; padding: 12px 35px; font-size: 1.05rem; font-weight: bold; border-radius: 25px; cursor: pointer; box-shadow: 0 0 15px var(--gold); white-space: nowrap; transition: transform 0.2s; }
         .cta-btn:hover { transform: scale(1.03); }
         .lang-switch-btn { background-color: transparent; border: 2px solid var(--gold); color: var(--gold); padding: 8px 20px; font-size: 1rem; font-weight: bold; border-radius: 20px; cursor: pointer; min-width: 65px; }
-        
         .audio-container { display: flex; align-items: center; background-color: #071222; border: 2px solid var(--gold); border-radius: 25px; padding: 4px 15px; gap: 10px; }
         .audio-select { background: transparent; border: none; color: #fff; font-size: 0.95rem; font-weight: bold; outline: none; cursor: pointer; }
         .audio-select option { background-color: #071222; color: #fff; }
         .audio-btn { background: none; border: none; color: var(--gold); font-size: 1.2rem; cursor: pointer; }
-        
         .widget-panel { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 25px; gap: 15px; user-select: none; z-index: 15; position: relative; }
         .clock-widget, .calendar-widget { background: linear-gradient(145deg, #071424, #020712); border: 2px solid var(--gold); border-radius: 12px; padding: 12px 20px; min-width: 160px; text-align: center; color: #fff; height: 75px; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,0.6); }
         .clock-day, .cal-date { font-size: 0.95rem; color: var(--gold); font-weight: bold; }
         .clock-time, .cal-year { font-size: 1.25rem; font-weight: bold; color: #48bb78; text-shadow: 0 0 10px rgba(72,187,120,0.4); font-family: monospace; }
-        
         .marquee-widget { flex: 1; background: linear-gradient(to right, #020b18, #0a1f38, #020b18); border: 2px solid var(--gold); border-radius: 12px; height: 75px; overflow: hidden; display: flex; align-items: center; cursor: pointer; box-shadow: inset 0 0 20px rgba(0,191,255,0.15), 0 8px 20px rgba(0,0,0,0.6); position: relative; }
         .marquee-widget::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDMwIDMwIj48cGF0aCBkPSJNMTUgMCBMMzAgMTUgTDE1IDMwIEwwIDE1IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q0YWYzNyIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjE1Ii8+PC9zdmc+"); pointer-events: none; }
         .marquee-box { display: flex; width: 100%; overflow: hidden; pointer-events: none; }
@@ -41,10 +35,7 @@
         .marquee-text-block { color: #f7fafc; font-size: 1.15rem; font-weight: bold; white-space: nowrap; padding: 0 120px; display: inline-block; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
         @keyframes scrollRTL { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(50%,0,0); } }
         @keyframes scrollLTR { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(-50%,0,0); } }
-        
-        /* اصلاح ساختار کنتراست خطوط کاشی‌کاری سنتی معرق پشت شمع‌ها جهت وضوح کامل */
-        .shrine-frame { position: relative; width: 100%; margin-top: 10px; display: flex; flex-direction: column; align-items: center; z-index: 1; border-radius: 475px 475px 0 0 / 450px 450px 0 0; border-top: 5px solid var(--gold); border-left: 3px solid rgba(212,175,55,0.4); border-right: 3px solid rgba(212,175,55,0.4); box-shadow: inset 0 25px 60px rgba(0,0,0,0.95), 0 12px 40px rgba(0,0,0,0.7); padding: 220px 0 60px 0; height: auto; min-height: 580px; background-color: #02091a; background-image: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.3) 0%, rgba(2, 6, 20, 0.99) 65%), url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwIEMxMCAxMCwgMzAgMTAsIDQwIDAgTTQwIDQwIEMzMCAzMCwgMTAgMzAsIDAgNDAgTTAgNDAgQzEwIDMwLCAxMCAxMCwgMCAwIE00MCAwIEMzMCAxMCwgMzAgMzAsIDQwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxZDNiNjIiIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2Utb3BhY2l0eT0iMSIvPjwvc3ZnPg=="); }
-        
+        .shrine-frame { position: relative; width: 100%; margin-top: 10px; display: flex; flex-direction: column; align-items: center; z-index: 1; border-radius: 475px 475px 0 0 / 450px 450px 0 0; border-top: 5px solid var(--gold); border-left: 3px solid rgba(212,175,55,0.4); border-right: 3px solid rgba(212,175,55,0.4); box-shadow: inset 0 25px 60px rgba(0,0,0,0.95), 0 12px 40px rgba(0,0,0,0.7); padding: 220px 0 60px 0; height: auto; min-height: 580px; background-color: #02091a; background-image: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.3) 0%, rgba(2, 6, 20, 0.99) 65%), url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwIEMxMCAxMCwgMzAgMTAsIDQwIDAgTTQwIDQwIEMzMCAzMCwgMTAgMzAsIDAgNDAgTTAgNDAgQzEwIDMwLCAxMCAxMCwgMCAwIE00MCAwIEMzMCAxMCwgMzAgMzAsIDQwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxZDNiNjIiIHN0cm9rZT0iMS44IiBzdHJva2Utb3BhY2l0eT0iMSIvPjwvc3ZnPg=="); }
         .sagha-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 30px; width: 100%; max-width: 880px; padding: 0 40px; z-index: 5; }
         .candle-card { background: linear-gradient(145deg, #091324, #030814); border: 1px solid #162a45; border-radius: 16px; padding: 25px 20px; display: flex; flex-direction: column; align-items: center; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.9); min-height: 290px; justify-content: space-between; border-bottom: 4px solid #0b1524; }
         .candle-container { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; width: 60px; margin-bottom: 15px; }
@@ -59,8 +50,8 @@
         .timer-tag { font-size: 0.8rem; color: #cbd5e0; margin-top: 5px; direction: ltr; font-weight: bold; }
         .admin-box { margin-top: 10px; width: 100%; border-top: 1px dashed #2d3748; padding-top: 8px; text-align: center; } 
         .admin-input { width: 100%; padding: 5px; font-size: 0.75rem; background-color: transparent; border: 1px solid transparent; color: #4a5568; text-align: center; outline: none; }
-        .action-btn { background-color: #e53e3e; color: white; border: none; padding: 6px; font-size: 0.8rem; font-weight: bold; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 5px; } .js-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 2000; }
-        .js-modal-content { background-color: var(--card-bg); border: 2px solid var(--gold); padding: 30px; border-radius: 15px; width: 90%; max-width: 450px; box-shadow: 0 0 35px var(--gold); } .js-form-group { margin-bottom: 15px; } .js-modal-content label { display: block; margin-bottom: 6px; color: var(--gold); font-weight: bold; }
+        .action-btn { background-color: #e53e3e; color: white; border: none; padding: 6px; font-size: 0.8rem; font-weight: bold; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 5px; } 
+        .js-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 2000; } .js-modal-content { background-color: var(--card-bg); border: 2px solid var(--gold); padding: 30px; border-radius: 15px; width: 90%; max-width: 450px; box-shadow: 0 0 35px var(--gold); } .js-form-group { margin-bottom: 15px; } .js-modal-content label { display: block; margin-bottom: 6px; color: var(--gold); font-weight: bold; }
         .js-modal-content input[type="text"], .js-modal-content select { width: 100%; padding: 10px; background-color: #050b14; border: 1px solid #2d3748; color: #fff; border-radius: 6px; font-size: 1rem; outline: none; }
         .js-price { font-size: 1.4rem; font-weight: bold; color: #48bb78; text-align: center; margin: 10px 0; font-family: monospace; }
         .js-buttons { display: flex; gap: 10px; } .js-buttons button { flex: 1; padding: 12px; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; font-weight: bold; color: white; }
@@ -133,10 +124,13 @@
                 grid.appendChild(right); grid.insertBefore(left, grid.firstChild); left.className = "header-left-side"; right.className = "header-right-side";
                 document.getElementById('jsFooterRight').style.textAlign = 'right'; document.getElementById('tFooterLeftText').style.textAlign = 'left';
             }
+            var savedMarquee = localStorage.getItem('saghaMarquee_' + currentLang);
+            if (savedMarquee) { document.getElementById('jsMarqueeText').innerText = savedMarquee; document.getElementById('jsMarqueeTextClone').innerText = savedMarquee; }
+            else { document.getElementById('jsMarqueeText').innerText = dictionary[currentLang].marquee; document.getElementById('jsMarqueeTextClone').innerText = dictionary[currentLang].marquee; }
             updateDOMTexts(); refreshCandleLanguages();
         }
         function updateDOMTexts() {
-            var d = dictionary[currentLang]; document.getElementById('tMainTitle').innerText = d.mainTitle; document.getElementById('tSubTitle1').innerText = d.subTitle1; document.getElementById('tSubTitle2').innerText = d.subTitle2; document.getElementById('tOrderBtn').innerText = d.orderBtn; document.getElementById('jsAudioBtn').innerText = isPlaying ? d.audioBtnStop : d.audioBtnPlay; document.getElementById('tAudio1').innerText = d.audio1; document.getElementById('tAudio2').innerText = d.audio2; document.getElementById('tAudio3').innerText = d.audio3; document.getElementById('tContactTitle').innerText = d.contactTitle; document.getElementById('tFooterLeftText').innerText = d.footerLeft; document.getElementById('jsMarqueeText').innerText = d.marquee; document.getElementById('jsMarqueeTextClone').innerText = d.marquee;
+            var d = dictionary[currentLang]; document.getElementById('tMainTitle').innerText = d.mainTitle; document.getElementById('tSubTitle1').innerText = d.subTitle1; document.getElementById('tSubTitle2').innerText = d.subTitle2; document.getElementById('tOrderBtn').innerText = d.orderBtn; document.getElementById('jsAudioBtn').innerText = isPlaying ? d.audioBtnStop : d.audioBtnPlay; document.getElementById('tAudio1').innerText = d.audio1; document.getElementById('tAudio2').innerText = d.audio2; document.getElementById('tAudio3').innerText = d.audio3; document.getElementById('tContactTitle').innerText = d.contactTitle; document.getElementById('tFooterLeftText').innerText = d.footerLeft;
         }
         function refreshCandleLanguages() {
             var lbl = dictionary[currentLang];
@@ -152,29 +146,26 @@
         }
         function changeAudioSource() { if (isPlaying) { var src = document.getElementById('jsAudioSelect').value; var p = document.getElementById('jsAudioPlayer'); p.src = src; p.play(); } }
         document.querySelectorAll('.clock-widget, .calendar-widget').forEach(function(el) { el.addEventListener('dblclick', function(e) { e.preventDefault(); e.stopPropagation(); return false; }, true); });
-        document.addEventListener('keydown', function(event) { if (event.key === 'm' || event.key === 'M' || event.key === 'ئ') { secureUpdateMarquee(); } });
         function hashDJB2(str) {
-            var hash = 5381;
-            for (var i = 0; i < str.length; i++) { hash = ((hash << 5) + hash) + str.charCodeAt(i); hash = hash & hash; }
-            return Math.abs(hash);
+            var hash = 5381; for (var i = 0; i < str.length; i++) { hash = ((hash << 5) + hash) + str.charCodeAt(i); hash = hash & hash; } return Math.abs(hash);
         }
         function secureUpdateMarquee() {
             var p = prompt(currentLang === "FA" ? "🔒 رمز ورود خادم سقاخانه را وارد کنید:" : "🔒 Enter Custodian Password:");
             if (p === "Jalil40") {
                 var t = prompt(currentLang === "FA" ? "📜 متن جدید کتیبه را وارد نمایید:" : "📜 Enter new text for the banner:", document.getElementById('jsMarqueeText').innerText);
-                if (t && t.trim() !== "") { document.getElementById('jsMarqueeText').innerText = t; document.getElementById('jsMarqueeTextClone').innerText = t; dictionary[currentLang].marquee = t; localStorage.setItem('saghaMarquee', t); alert(currentLang === "FA" ? "✅ کتیبه با موفقیت به روز رسانی شد و ذخیره گردید." : "✅ Banner updated and saved successfully."); }
+                if (t && t.trim() !== "") { document.getElementById('jsMarqueeText').innerText = t; document.getElementById('jsMarqueeTextClone').innerText = t; dictionary[currentLang].marquee = t; localStorage.setItem('saghaMarquee_' + currentLang, t); alert(currentLang === "FA" ? "✅ کتیبه با موفقیت به روز رسانی شد و ذخیره گردید." : "✅ Banner updated and saved successfully."); }
             } else if (p !== null) { alert(currentLang === "FA" ? "❌ رمز ورود اشتباه است." : "❌ Incorrect Password."); }
         }
         window.onload = function() { 
             initClockAndCalendar(); 
-            var savedMarquee = localStorage.getItem('saghaMarquee');
-            if (savedMarquee) { document.getElementById('jsMarqueeText').innerText = savedMarquee; document.getElementById('jsMarqueeTextClone').innerText = savedMarquee; dictionary.FA.marquee = savedMarquee; dictionary.EN.marquee = savedMarquee; }
+            var savedMarquee = localStorage.getItem('saghaMarquee_' + currentLang);
+            if (savedMarquee) { document.getElementById('jsMarqueeText').innerText = savedMarquee; document.getElementById('jsMarqueeTextClone').innerText = savedMarquee; dictionary[currentLang].marquee = savedMarquee; }
             createCandleDOM('sample-card-1', currentLang === "FA" ? 'علی محمدی' : 'Ali Mohammadi', 'large', '۳۶۵'); createCandleDOM('sample-card-2', currentLang === "FA" ? 'محمدی' : 'Mohammadi', 'medium', '۴۰'); createCandleDOM('sample-card-3', 'Hassan', 'small', '۷'); 
         };
         function initClockAndCalendar(){ 
             var days = ['یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه','شنبه'];
-            setInterval(function(){ 
-                var d = new Date(); document.getElementById('jsLiveClock').innerText = String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0') + ':' + String(d.getSeconds()).padStart(2,'0');   if (currentLang === "FA") { document.getElementById('jsDayName').innerText = days[d.getDay()]; document.getElementById('jsCalDate').innerText = d.toLocaleDateString('fa-IR', {day:'numeric',month:'long'}); document.getElementById('jsCalYear').innerText = d.toLocaleDateString('fa-IR', {year:'numeric'}); } 
+            setInterval(function(){   var d = new Date(); document.getElementById('jsLiveClock').innerText = String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0') + ':' + String(d.getSeconds()).padStart(2,'0'); 
+                if (currentLang === "FA") { document.getElementById('jsDayName').innerText = days[d.getDay()]; document.getElementById('jsCalDate').innerText = d.toLocaleDateString('fa-IR', {day:'numeric',month:'long'}); document.getElementById('jsCalYear').innerText = d.toLocaleDateString('fa-IR', {year:'numeric'}); } 
                 else { document.getElementById('jsDayName').innerText = dictionary.EN.days[d.getDay()]; document.getElementById('jsCalDate').innerText = d.toLocaleDateString('en-US', {day:'numeric',month:'long'}); document.getElementById('jsCalYear').innerText = d.getFullYear(); }
             },1000); 
         }
@@ -185,7 +176,8 @@
                 card.innerHTML = '<div class="candle-container ' + size + '-candle"><div class="flame"></div><div class="candle-wax"><div class="candle-wick-element"></div></div></div><div class="name-tag" contenteditable="true">' + name + '</div><div class="timer-tag" data-days="' + duration + '">' + lbl.remaining + ' ' + duration + ' ' + lbl.daysUnit + '</div><div class="admin-box"><input type="password" class="admin-input" placeholder="' + (currentLang === "FA" ? "🔒 مدیریت شمع" : "🔒 Manage Candle") + '" oninput="checkPasswordInline(this, \'btn-'+id+'\')"><button class="action-btn" id="btn-'+id+'" style="display:none;" onclick="this.closest(\'.candle-card\').remove();">' + (currentLang === "FA" ? "حذف کامل شمع" : "Delete Candle") + '</button></div>'; 
                 grid.appendChild(card); 
             } 
-        }  function openOrderForm() { 
+        }
+        function openOrderForm() { 
             var c = document.getElementById('modalContainer'); if(!c) return; activeDiscount = 0;
             if (currentLang === "FA") { c.innerHTML = '<div class="js-modal"><div class="js-modal-content"><h2 style="color: var(--gold); margin-bottom: 15px; text-align: center;">روشن کردن شمع جدید</h2><form onsubmit="processPayPalPayment(event)"><div class="js-form-group" style="text-align:right;"><label>نام متوفی:</label><input type="text" id="deceasedName" required placeholder="مثال: زنده یاد علی محمدی"></div><div class="js-form-group" style="text-align:right;"><label>اندازه شمع:</label><select id="candleSize" onchange="updateLivePrice(this.value)"><option value="small">کوچک</option><option value="medium" selected>متوسط</option><option value="large">بزرگ</option></select></div><div class="js-form-group" style="text-align:right;"><label>مدت زمان:</label><select id="duration" onchange="updateLivePrice(document.getElementById(\'candleSize\').value)"><option value="7">۷ روز (یک هفته)</option><option value="40">۴۰ روز</option><option value="365">۳۶۵ روز (یک سال)</option></select></div><div class="js-form-group" style="text-align:right;"><label>کد تخفیف خادم:</label><input type="text" id="promoCode" placeholder="کد تخفیف را وارد کنید" oninput="applyPromoCodeInline(this.value)"></div><div class="js-price" id="calculatedPrice">هزینه نهایی: $12</div><div class="js-buttons"><button type="submit" style="background-color: #0070ba; display: flex; align-items: center; justify-content: center; gap: 8px; color: white; border-radius: 6px; font-weight: bold; border: none; padding: 12px; cursor: pointer; width: 100%;">🔒 پرداخت امن با PayPal</button><button type="button" style="background-color: #e53e3e; color: white; border-radius: 6px; font-weight: bold; border: none; padding: 12px; cursor: pointer; width: 100%; margin-top: 5px;" onclick="document.getElementById(\'modalContainer\').innerHTML=\'\';">انصراف</button></div></form></div></div>'; } 
             else { c.innerHTML = '<div class="js-modal"><div class="js-modal-content"><h2 style="color: var(--gold); margin-bottom: 15px; text-align: center;">Light a New Candle</h2><form onsubmit="processPayPalPayment(event)"><div class="js-form-group" style="text-align:left;"><label>Deceased Name:</label><input type="text" id="deceasedName" required placeholder="e.g., In Memory of John Doe"></div><div class="js-form-group" style="text-align:left;"><label>Candle Size:</label><select id="candleSize" onchange="updateLivePrice(this.value)"><option value="small">Small</option><option value="medium" selected>Medium</option><option value="large">Large</option></select></div><div class="js-form-group" style="text-align:left;"><label>Duration:</label><select id="duration" onchange="updateLivePrice(document.getElementById(\'candleSize\').value)"><option value="7">7 Days (1 Week)</option><option value="40">40 Days</option><option value="365">365 Days (1 Year)</option></select></div><div class="js-form-group" style="text-align:left;"><label>Promo Code:</label><input type="text" id="promoCode" placeholder="Enter promo code" oninput="applyPromoCodeInline(this.value)"></div><div class="js-price" id="calculatedPrice">Total Cost: $12</div><div class="js-buttons"><button type="submit" style="background-color: #0070ba; display: flex; align-items: center; justify-content: center; gap: 8px; color: white; border-radius: 6px; font-weight: bold; border: none; padding: 12px; cursor: pointer; width: 100%;">🔒 Secure Pay with PayPal</button><button type="button" style="background-color: #e53e3e; color: white; border-radius: 6px; font-weight: bold; border: none; padding: 12px; cursor: pointer; width: 100%; margin-top: 5px;" onclick="document.getElementById(\'modalContainer\').innerHTML=\'\';">Cancel</button></div></form></div></div>'; }
@@ -199,9 +191,9 @@
             document.getElementById('calculatedPrice').innerText = currentLang === "FA" ? 'هزینه نهایی: $' + finalPrice : 'Total Cost: $' + finalPrice; 
         }
         function applyPromoCodeInline(code) {
-            var h = hashDJB2(code.trim().toUpperCase());
-            if (h === 2038706342) { activeDiscount = 1.0; }
-            else if (h === 1317540263) { activeDiscount = 0.5; }
+            var trimmed = code.trim().toUpperCase();
+            if (trimmed === "KHADEM100") { activeDiscount = 1.0; }
+            else if (trimmed === "SAGHA50") { activeDiscount = 0.5; }
             else { activeDiscount = 0; }
             updateLivePrice(document.getElementById('candleSize').value);
         }
